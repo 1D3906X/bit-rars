@@ -87,7 +87,7 @@ public class RegistersWindow extends JPanel implements Observer {
 
     public Object[][] setupWindow() {
         int valueBase = NumberDisplayBaseChooser.getBase(settings.getDisplayValuesInHex());
-        tableData = new Object[35][3];
+        tableData = new Object[33][3];
         registers = RegisterFile.getRegisters();
         for (int i = 0; i < registers.length; i++) {
             tableData[i][0] = registers[i].getName();
@@ -98,13 +98,6 @@ public class RegistersWindow extends JPanel implements Observer {
         tableData[32][1] = "";//new Integer(32);
         tableData[32][2] = NumberDisplayBaseChooser.formatUnsignedInteger(RegisterFile.getProgramCounter(), valueBase);
 
-        tableData[33][0] = "hi";
-        tableData[33][1] = "";//new Integer(33);
-        tableData[33][2] = NumberDisplayBaseChooser.formatNumber(RegisterFile.getValue(33), valueBase);
-
-        tableData[34][0] = "lo";
-        tableData[34][1] = "";//new Integer(34);
-        tableData[34][2] = NumberDisplayBaseChooser.formatNumber(RegisterFile.getValue(34), valueBase);
 
         return tableData;
     }

@@ -70,8 +70,6 @@ public class RegisterFile {
             };
 
     private static Register programCounter = new Register("pc", 32, Memory.textBaseAddress);
-    private static Register hi = new Register("hi", 33, 0);//this is an internal register with arbitrary number
-    private static Register lo = new Register("lo", 34, 0);// this is an internal register with arbitrary number
 
 
     /**
@@ -109,15 +107,7 @@ public class RegisterFile {
                 }
             }
         }
-        if (num == 33) {//updates the hi register
-            old = (Globals.getSettings().getBackSteppingEnabled())
-                    ? Globals.program.getBackStepper().addRegisterFileRestore(num, hi.setValue(val))
-                    : hi.setValue(val);
-        } else if (num == 34) {// updates the low register
-            old = (Globals.getSettings().getBackSteppingEnabled())
-                    ? Globals.program.getBackStepper().addRegisterFileRestore(num, lo.setValue(val))
-                    : lo.setValue(val);
-        }
+
         return old;
     }
 
@@ -149,11 +139,7 @@ public class RegisterFile {
      **/
 
     public static int getValue(int num) {
-        if (num == 33) {
-            return hi.getValue();
-        } else if (num == 34) {
-            return lo.getValue();
-        } else
+
             return regFile[num].getValue();
 
     }
@@ -309,8 +295,7 @@ public class RegisterFile {
             regFile[i].resetValue();
         }
         initializeProgramCounter(Globals.getSettings().getStartAtMain());// replaces "programCounter.resetValue()", DPS 3/3/09
-        hi.resetValue();
-        lo.resetValue();
+
     }
 
     /**
@@ -330,8 +315,7 @@ public class RegisterFile {
         for (int i = 0; i < regFile.length; i++) {
             regFile[i].addObserver(observer);
         }
-        hi.addObserver(observer);
-        lo.addObserver(observer);
+
     }
 
     /**
@@ -343,7 +327,6 @@ public class RegisterFile {
         for (int i = 0; i < regFile.length; i++) {
             regFile[i].deleteObserver(observer);
         }
-        hi.deleteObserver(observer);
-        lo.deleteObserver(observer);
+
     }
 }
