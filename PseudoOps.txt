@@ -90,9 +90,12 @@
 
 #######################  arithmetic and branch pseudo-ops #####################
 
-la  t1,label	lui RG1, LHL	ori RG1, RG1, LL2U	#Load Address : Set t1 to label's address
-li  t1,-112	    ori RG1, x0, VL2U	#Load Immediate : Set t1 to unsigned 16-bit immediate (zero-extended)
-li  t1,10000032	lui RG1, VHL2	ori RG1, RG1, VL2U	#Load Immediate : Set t1 to 32-bit immediate
-j   t1,label	lui RG1, LHL	ori RG1, RG1, LL2U	jalr ra,RG1,0	#Jump and link : Set ra to Program Counter (return address) then jump to label address
-ret	jalr zero,ra,0	#return : set Program Counter to ra
+la t1,label	lui RG1, LHL	ori RG1, RG1, LL2U	#Load Address : Set t1 to label's address
+li t1,-112	ori RG1, x0, VL2U	#Load Immediate : Set t1 to unsigned 16-bit immediate (zero-extended)
+li t1,10000032	lui RG1, VHL2	ori RG1, RG1, VL2U	#Load Immediate : Set t1 to 32-bit immediate
 
+nop	addi x0,x0,0	#No operation : Do nothing
+mv t1,t2	addi RG1,RG2,0	#Move : Copy contents of register t2 to t1
+j label	jal x0,LAB	#Jump : Unconditional jump to label
+jr t1	jalr x0,RG1,0	#Jump Register : Unconditional jump to address in register t1
+ret	jalr x0,ra,0	#Return : Jump to return address
