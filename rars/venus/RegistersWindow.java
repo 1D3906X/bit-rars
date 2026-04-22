@@ -149,8 +149,7 @@ public class RegistersWindow extends JPanel implements Observer {
             updateRegisterValue(registers[i].getNumber(), registers[i].getValue(), base);
         }
         updateRegisterUnsignedValue(32, RegisterFile.getProgramCounter(), base);
-        updateRegisterValue(33, RegisterFile.getValue(33), base);
-        updateRegisterValue(34, RegisterFile.getValue(34), base);
+
     }
 
     /**
