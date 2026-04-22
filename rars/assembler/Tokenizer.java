@@ -11,23 +11,23 @@ Copyright (c) 2003-2013,  Pete Sanderson and Kenneth Vollmar
 Developed by Pete Sanderson (psanderson@otterbein.edu)
 and Kenneth Vollmar (kenvollmar@missouristate.edu)
 
-Permission is hereby granted, free of charge, to any person obtaining 
-a copy of this software and associated documentation files (the 
-"Software"), to deal in the Software without restriction, including 
-without limitation the rights to use, copy, modify, merge, publish, 
-distribute, sublicense, and/or sell copies of the Software, and to 
-permit persons to whom the Software is furnished to do so, subject 
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject
 to the following conditions:
 
-The above copyright notice and this permission notice shall be 
+The above copyright notice and this permission notice shall be
 included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR 
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
-CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 (MIT license, http://www.opensource.org/licenses/mit-license.html)
@@ -297,7 +297,7 @@ public class Tokenizer {
                 }
             } else { // not inside a quoted string, so be sensitive to delimiters
                 switch (c) {
-                    case '#':  // # denotes comment that takes remainder of line
+                    case '#':// # denotes comment that takes remainder of line
                         if (tokenPos > 0) {
                             this.processCandidateToken(token, program, lineNum, theLine, tokenPos, tokenStartPos, result);
                             tokenPos = 0;
@@ -308,6 +308,40 @@ public class Tokenizer {
                         this.processCandidateToken(token, program, lineNum, theLine, tokenPos, tokenStartPos, result);
                         linePos = line.length;
                         tokenPos = 0;
+                        break;
+                    case '@':
+                        if (tokenPos > 0) {
+                            this.processCandidateToken(token, program, lineNum, theLine, tokenPos, tokenStartPos, result);
+                            tokenPos = 0;
+                        }
+                        tokenStartPos = linePos + 1;
+                        tokenPos = line.length - linePos;
+                        System.arraycopy(line, linePos, token, 0, tokenPos);
+                        token[0] = '#';
+                        this.processCandidateToken(token, program, lineNum, theLine, tokenPos, tokenStartPos, result);
+                        linePos = line.length;
+                        tokenPos = 0;
+                        break;
+                    case '/':
+                        if (linePos + 1 < line.length && line[linePos + 1] == '/') {
+                            if (tokenPos > 0) {
+                                this.processCandidateToken(token, program, lineNum, theLine, tokenPos, tokenStartPos, result);
+                                tokenPos = 0;
+                            }
+
+                            tokenStartPos = linePos + 1;
+                            tokenPos = line.length - linePos;
+
+                            System.arraycopy(line, linePos, token, 0, tokenPos);
+                            token[0] = '#';
+
+                            this.processCandidateToken(token, program, lineNum, theLine, tokenPos, tokenStartPos, result);
+                            linePos = line.length;
+                            tokenPos = 0;
+                            break;
+                        }
+                        if (tokenPos == 0) tokenStartPos = linePos + 1;
+                        token[tokenPos++] = c;
                         break;
                     case ' ':
                     case '\t':
