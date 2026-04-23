@@ -52,7 +52,17 @@ public class HelpAboutAction extends GuiAction {
                         "  *  Tango Desktop Project (tango.freedesktop.org),\n" +
                         "  *  glyFX (www.glyfx.com) Common Toolbar Set,\n" +
                         "  *  KDE-Look (www.kde-look.org) crystalline-blue-0.1,\n" +
-                        "  *  Icon-King (www.icon-king.com) Nuvola 1.0.\n",
+                        "  *  Icon-King (www.icon-king.com) Nuvola 1.0.\n\n" +
+                        "--------------------------------------------------\n\n" +
+                        "RARS " + Globals.version_2 + "    Copyright " + Globals.copyrightYears_2 + "\n" +
+                        Globals.copyrightHolders_2 + "\n" +
+                        "Recent Enhancements:\n" +
+                        "  * Default file extension changed to .s\n" +
+                        "  * Enhanced RV32I and common pseudo-instructions\n" +
+                        "  * Supported @ and // comments (ARM/RISC-V style)\n" +
+                        "  * Optimized ABI register naming conventions\n" +
+                        "  * Updated Help system and syntax highlighting\n" +
+                        "--------------------------------------------------",
                 "About RARS",
                 JOptionPane.INFORMATION_MESSAGE,
                 new ImageIcon("images/RARS50.gif"));

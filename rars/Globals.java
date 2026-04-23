@@ -57,14 +57,17 @@ public class Globals {
      * The current MARS version number. Can't wait for "initialize()" call to get it.
      */
     public static final String version = "0.1";
+    public static final String version_2 = "0.2";
     /**
      * MARS copyright years
      */
     public static final String copyrightYears = getCopyrightYears();
+    public static final String copyrightYears_2 = getCopyrightYears_2();
     /**
      * MARS copyright holders
      */
     public static final String copyrightHolders = getCopyrightHolders();
+    public static final String copyrightHolders_2 = getCopyrightHolders_2();
     /**
      * The set of implemented MIPS instructions.
      **/
@@ -138,8 +141,16 @@ public class Globals {
         return "2018-2018";
     }
 
+    private static String getCopyrightYears_2() {
+        return "2026-2026";
+    }
+
     private static String getCopyrightHolders() {
         return "Yueyan Zhao";
+    }
+
+    private static String getCopyrightHolders_2() {
+        return "Xinyi Lin";
     }
 
     public static VenusUI getGui() {
