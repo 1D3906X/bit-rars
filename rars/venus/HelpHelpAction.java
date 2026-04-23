@@ -203,6 +203,7 @@ public class HelpHelpAction extends GuiAction {
                         "</tr><tr>" +
                         "<td><tt>t1, t2, t3</tt></td><td>any integer register</td>" +
                         "</tr><tr>" +
+
                     /*
                "<td><tt>$f2, $f4, $f6</tt></td><td><i>even-numbered</i> floating point register</td>"+
             "</tr><tr>"+
@@ -222,6 +223,8 @@ public class HelpHelpAction extends GuiAction {
                         "<td><tt>100020</tt></td><td>unsigned 20-bit integer (0 to 1048575)</td>" +
                         "</tr><tr>" +
                         "<td><tt>10000032</tt></td><td>signed 32-bit integer (-2147483648 to 2147483647)</td>" +
+                        "</tr><tr>" +
+                        "<td><tt>#, @, //</tt></td><td>comment</td>" +
                         "</tr><tr>" +
             /*
             "</tr><tr>" +

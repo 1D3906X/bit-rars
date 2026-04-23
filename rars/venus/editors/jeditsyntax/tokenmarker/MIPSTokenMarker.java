@@ -58,7 +58,7 @@ public class MIPSTokenMarker extends TokenMarker {
     public static String[] getMIPSTokenExamples() {
         if (tokenExamples == null) {
             tokenExamples = new String[Token.ID_COUNT];
-            tokenExamples[Token.COMMENT1] = "# Load";
+            tokenExamples[Token.COMMENT1] = "# Load (@ and // also supported)";
             tokenExamples[Token.LITERAL1] = "\"First\"";
             tokenExamples[Token.LITERAL2] = "'\\n'";
             tokenExamples[Token.LABEL] = "main:";
