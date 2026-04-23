@@ -67,27 +67,24 @@ public class MarsSplashScreen extends JWindow {
         int y = (screen.height - height) / 2;
         setBounds(x, y, width, height);
 
+
         // Build the splash screen
-        JLabel title_0 = new JLabel("BIT-RARS", JLabel.CENTER);
-        JLabel title_1 = new JLabel("Risc-V Assembler and Runtime Simulator", JLabel.CENTER);
-        JLabel copyrt1 = new JLabel
-                ("<html><br><br>Version " + Globals.version + " Copyright (c) " + Globals.copyrightYears + "</html>", JLabel.CENTER);
-        JLabel copyrt2 = new JLabel
-                ("<html><br><br>" + Globals.copyrightHolders + "</html>", JLabel.CENTER);
-        title_0.setFont(new Font("Sans-Serif", Font.BOLD, 16));
-        title_0.setForeground(Color.black);
-        title_1.setFont(new Font("Sans-Serif", Font.BOLD, 16));
-        title_1.setForeground(Color.black);
-        copyrt1.setFont(new Font("Sans-Serif", Font.BOLD, 14));
-        copyrt2.setFont(new Font("Sans-Serif", Font.BOLD, 14));
-        copyrt1.setForeground(Color.black);
-        copyrt2.setForeground(Color.black);
+        JLabel title_all = new JLabel("<html><center><br><br>BIT-RARS<br><br>Risc-V Assembler and Runtime Simulator</center></html>", JLabel.CENTER);
+        title_all.setFont(new Font("Sans-Serif", Font.BOLD, 16));
+        title_all.setForeground(Color.black);
 
-        content.add(title_0, BorderLayout.NORTH);
-        content.add(title_1, BorderLayout.NORTH);
-        content.add(copyrt1, BorderLayout.CENTER);
-        content.add(copyrt2, BorderLayout.SOUTH);
+        JLabel copyrt_all = new JLabel(
+                "<html><center>" +
+                        "<br>" +
+                        "Version " + Globals.version + " Copyright (c) " + Globals.copyrightYears + " " + Globals.copyrightHolders + "<br>" +
+                        "Version " + Globals.version_2 + " Copyright (c) " + Globals.copyrightYears_2 + " " + Globals.copyrightHolders_2 +
+                        "</center></html>",
+                JLabel.CENTER);
+        copyrt_all.setFont(new Font("Sans-Serif", Font.BOLD, 14));
+        copyrt_all.setForeground(Color.black);
 
+        content.add(title_all, BorderLayout.NORTH);
+        content.add(copyrt_all, BorderLayout.SOUTH);
         // Display it
         setVisible(true);
         // Wait a little while, maybe while loading resources
