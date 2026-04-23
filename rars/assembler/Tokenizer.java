@@ -317,7 +317,7 @@ public class Tokenizer {
                         tokenStartPos = linePos + 1;
                         tokenPos = line.length - linePos;
                         System.arraycopy(line, linePos, token, 0, tokenPos);
-                        token[0] = '#';
+
                         this.processCandidateToken(token, program, lineNum, theLine, tokenPos, tokenStartPos, result);
                         linePos = line.length;
                         tokenPos = 0;
@@ -333,7 +333,7 @@ public class Tokenizer {
                             tokenPos = line.length - linePos;
 
                             System.arraycopy(line, linePos, token, 0, tokenPos);
-                            token[0] = '#';
+
 
                             this.processCandidateToken(token, program, lineNum, theLine, tokenPos, tokenStartPos, result);
                             linePos = line.length;
