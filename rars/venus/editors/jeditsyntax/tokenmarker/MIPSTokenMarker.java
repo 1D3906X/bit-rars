@@ -185,6 +185,7 @@ public class MIPSTokenMarker extends TokenMarker {
                             }
                             break;
                         case '#':
+                        case '@':  //add @
                             backslash = false;
                             doKeyword(line, i, c);
                             if (length - i >= 1) {
@@ -196,6 +197,15 @@ public class MIPSTokenMarker extends TokenMarker {
                             break;
                         default:
                             backslash = false;
+
+                            if (c == '/' && i + 1 < length && array[i + 1] == '/') {  //add //
+                                doKeyword(line, i, c);
+                                addToken(i - lastOffset, token);
+                                addToken(length - i, Token.COMMENT1);
+                                lastOffset = lastKeyword = length;
+                                break loop;
+                            }
+
                             // . and $ added 4/6/10 DPS; % added 12/12 M.Sekhavat
                             if (!Character.isLetterOrDigit(c)
                                     && c != '_' && c != '.' && c != '$' && c != '%')

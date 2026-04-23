@@ -859,7 +859,7 @@ public class InstructionSet {
             StringTokenizer tokenizer;
             while ((line = in.readLine()) != null) {
                 // skip over: comment lines, empty lines, lines starting with blank.
-                if (!line.startsWith("#") && !line.startsWith(" ")
+                if (!line.startsWith("#") && !line.startsWith("@") && !line.startsWith("//") && !line.startsWith(" ")
                         && line.length() > 0) {
                     description = "";
                     tokenizer = new StringTokenizer(line, "\t");
@@ -868,7 +868,7 @@ public class InstructionSet {
                     firstTemplate = null;
                     while (tokenizer.hasMoreTokens()) {
                         token = tokenizer.nextToken();
-                        if (token.startsWith("#")) {
+                        if (token.startsWith("#") || token.startsWith("@") || token.startsWith("//")) {
                             // Optional description must be last token in the line.
                             description = token.substring(1);
                             break;
