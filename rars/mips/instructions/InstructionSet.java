@@ -790,6 +790,30 @@ public class InstructionSet {
                                 findAndSimulateSyscall(RegisterFile.getValue(2), statement);
                             }
                         }));
+        // add ecall
+        instructionList.add(
+                new BasicInstruction("ecall",
+                        "Issue a system call : Execute the system call specified by value in $v0",
+                        BasicInstructionFormat.R_FORMAT,
+                        "000000 00000 00000 00000 00000 001100",
+                        new SimulationCode() {
+                            public void simulate(ProgramStatement statement) throws ProcessingException {
+                                findAndSimulateSyscall(RegisterFile.getValue(17), statement);
+                            }
+                        }));
+
+        // add ebreak
+        instructionList.add(
+                new BasicInstruction("ebreak",
+                        "Breakpoint : usage: ebreak",
+                        BasicInstructionFormat.R_FORMAT,
+                        "000000 00000 00000 00000 00000 001101",
+                        new SimulationCode() {
+                            public void simulate(ProgramStatement statement) throws ProcessingException {
+                                throw new ProcessingException(statement, "breakpoint exception", Exceptions.BREAKPOINT_EXCEPTION);
+                            }
+                        }));
+
         //PC aligned to a four-byte problem is unsolved
 
 

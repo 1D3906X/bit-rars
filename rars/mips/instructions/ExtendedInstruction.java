@@ -323,8 +323,14 @@ public class ExtendedInstruction extends Instruction {
             } catch (NumberFormatException e) {
                 // this won't happen...
             }
-            instruction = substitute(instruction, "LHL", String.valueOf(addr >> 12));
+            instruction = substitute(instruction, "LHL", String.valueOf(addr >>> 12));
         }
+        if (instruction.indexOf("LL2") >= 0) {
+            String label = theTokenList.get(2).getValue();
+            int addr = 0;
+            try { addr = rars.util.Binary.stringToInt(label); } catch (Exception e) {}
+            instruction = substitute(instruction, "LL2", String.valueOf(addr & 0xFFF));
+        }//for la
 
         // substitute upper 16 bits of label address after adding the digit that follows "P" and
         // also adding the immediate e.g. here+44($s0)

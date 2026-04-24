@@ -100,7 +100,21 @@ j label	jal x0,LAB	#Jump : Unconditional jump to label
 jr t1	jalr x0,RG1,0	#Jump Register : Unconditional jump to address in register t1
 ret	jalr x0,ra,0	#Return : Jump to return address
 
+#v0.2 new
+
 beqz t1,label	beq RG1,x0,LAB	#Branch if equal to zero
 bnez t1,label	bne RG1,x0,LAB	#Branch if not equal to zero
 bgt t1,t2,label	blt RG2,RG1,LAB	#Branch if greater than
 ble t1,t2,label	bge RG2,RG1,LAB	#Branch if less than or equal
+
+lw t1,0(t2)	lw RG1, RG2, 0
+sw t1,0(t2)	sw RG1, RG2, 0
+
+call label	jal ra, LAB
+tail label	jal x0, LAB
+
+bltz t1,label	blt RG1, x0, LAB
+bgtz t1,label	blt x0, RG1, LAB
+
+not t1,t2	xori RG1, RG2, -1
+neg t1,t2	sub RG1, x0, RG2
